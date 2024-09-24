@@ -16,13 +16,20 @@ public class Main {
 
 		HashMap<Character, Integer> map = new HashMap<>();
 		ArrayList<Character> arr = new ArrayList<>();
+		boolean[] visited = new boolean[27];
 		for (int i = 0; i < input.length(); i++) {
+
 			if (map.containsKey(input.charAt(i))) {
 				map.remove(input.charAt(i));
 				arr.remove((Object) input.charAt(i));
 			} else {
-				map.put(input.charAt(i), 1);
-				arr.add(input.charAt(i));
+				if (!visited[input.charAt(i) - 'a']) {
+
+					map.put(input.charAt(i), 1);
+					arr.add(input.charAt(i));
+					visited[input.charAt(i) - 'a'] = true;
+				}
+
 			}
 		}
 
