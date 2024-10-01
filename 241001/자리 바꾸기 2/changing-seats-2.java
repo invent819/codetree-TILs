@@ -19,12 +19,14 @@ public class Main {
 			setList.add(new HashSet<Integer>());
 		}
 		arr = new int[n];
+		for (int i = 0; i < n; i++)
+			arr[i] = i;
 		int[][] input = new int[k][2];
 		for (int i = 0; i < k; i++) {
 			st = new StringTokenizer(br.readLine());
 			input[i][0] = Integer.parseInt(st.nextToken()) - 1;
 			input[i][1] = Integer.parseInt(st.nextToken()) - 1;
-			arr[i] = i;
+
 		}
 
 		for (int i = 0; i < 3; i++) {
