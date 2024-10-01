@@ -19,8 +19,11 @@ public class Main {
 			setList.add(new HashSet<Integer>());
 		}
 		arr = new int[n];
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < n; i++) {
 			arr[i] = i;
+			setList.get(i).add(i);
+		}
+
 		int[][] input = new int[k][2];
 		for (int i = 0; i < k; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -44,12 +47,7 @@ public class Main {
 
 		for (int i = 0; i < n; i++) {
 			int size = setList.get(i).size();
-			if (size == 0) {
-				System.out.println(1);
-			} else {
-				System.out.println(size);
-			}
-
+			System.out.println(size);
 		}
 	}
 }
