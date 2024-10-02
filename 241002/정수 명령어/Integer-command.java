@@ -15,7 +15,7 @@ public class Main {
 		int x;
 		
 		for (int T = 0; T < t; T++) {
-			
+			treeSet.clear();
 			k = Integer.parseInt(br.readLine());
 			for (int i = 0; i < k; i++) {
 				StringTokenizer st = new StringTokenizer(br.readLine());
