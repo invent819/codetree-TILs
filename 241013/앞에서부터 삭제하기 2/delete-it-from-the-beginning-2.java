@@ -14,7 +14,7 @@ public class Main {
 		n = Integer.parseInt(br.readLine());
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int sum = 0;
-		double avgMax = 0;
+		double avgMax = 0.0;
 		for (int i = 0; i < n; i++) {
 			int input = (Integer.parseInt(st.nextToken()));
 			pq.add(input);
@@ -29,7 +29,7 @@ public class Main {
 //			System.out.println("min = " + min);
 			sum -= arr[i];
 
-			localAvg = (sum - min) / ((n - (i + 2) * 1.0));
+			localAvg = ((sum - min) * 1.0) / ((n - (i + 2)) * 1.0);
 			avgMax = Math.max(avgMax, localAvg);
 		}
 
