@@ -21,7 +21,6 @@ public class Main {
 			arr[i] = input;
 			sum += input;
 		}
-		
 
 		for (int i = 0; i < n - 2; i++) {
 			double localAvg = 0;
@@ -30,7 +29,7 @@ public class Main {
 //			System.out.println("min = " + min);
 			sum -= arr[i];
 
-			localAvg = (sum - min) / (n - (i + 2));
+			localAvg = (sum - min) / ((n - (i + 2) * 1.0));
 			avgMax = Math.max(avgMax, localAvg);
 		}
 
