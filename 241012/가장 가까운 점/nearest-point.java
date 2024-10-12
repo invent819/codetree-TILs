@@ -42,12 +42,17 @@ class Node implements Comparable<Node> {
 
 	@Override
 	public int compareTo(Node o) {
+		if ((x + y) == (o.x + o.y)) {
+			return Integer.compare((x + y), o.x + o.y);
+		} else if (x == o.x) {
+			return Integer.compare(x, o.x);
+		}
+		return Integer.compare(y, o.y);
 
-		return Integer.compare((x + y), o.x + o.y);
 	}
 
 	@Override
 	public String toString() {
-		return y + " " + x;
+		return x + " " + y;
 	}
 }
