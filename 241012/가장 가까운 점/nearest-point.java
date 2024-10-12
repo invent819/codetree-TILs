@@ -48,6 +48,6 @@ class Node implements Comparable<Node> {
 
 	@Override
 	public String toString() {
-		return x + " " + y;
+		return y + " " + x;
 	}
 }
