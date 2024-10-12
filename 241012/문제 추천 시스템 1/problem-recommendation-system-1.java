@@ -40,10 +40,10 @@ public class Main {
 			case "rc": {
 				int x = Integer.parseInt(st.nextToken());
 				if (x == 1) {
-					Problem p = treeSet.first();
+					Problem p = treeSet.last();
 					System.out.println(p.no);
 				} else {
-					Problem p = treeSet.last();
+					Problem p = treeSet.first();
 					System.out.println(p.no);
 				}
 				break;
@@ -62,6 +62,7 @@ class Problem implements Comparable<Problem> {
 	public Problem(int x, int y) {
 		this.no = x;
 		this.difficult = y;
+
 	}
 
 	@Override
@@ -71,7 +72,7 @@ class Problem implements Comparable<Problem> {
 		}
 
 		// 난이도 내림차순 정렬
-		return Integer.compare(o.difficult, this.difficult); // 난이도는 내림차순으로 정렬
+		return Integer.compare(this.difficult, o.difficult); // 난이도는 내림차순으로 정렬
 	}
 
 	@Override
