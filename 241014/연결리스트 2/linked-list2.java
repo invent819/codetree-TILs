@@ -30,12 +30,14 @@ public class Main {
 
 				if (node.prev != null) {
 					node.prev.next = node.next;
-					node.prev = null;
+
 				}
 				if (node.next != null) {
 					node.next.prev = node.prev;
-					node.next = null;
+
 				}
+				node.prev = null;
+				node.next = null;
 				break;
 			}
 			case 2: {
