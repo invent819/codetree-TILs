@@ -8,14 +8,22 @@ public class Main {
 	static int n;
 	static int[][] graph;
 	static int[][] dp;
+	static int[] colDp;
 
-	public static int getSum(int x1, int x2) {
-		int ans = Integer.MIN_VALUE;
+	public static int getSum(int x1, int y1, int x2, int y2) {
+		return dp[x2][y2] - dp[x1 - 1][y2] - dp[x2][y1 - 1] + dp[x1 - 1][y1 - 1];
+	}
 
-		for (int i = 1; i <= n; i++) {
-			ans = Math.max(ans, dp[x2][i] - dp[x1 - 1][i]);
+	public static int getAreaSum(int x1, int x2) {
+		for (int y = 1; y <= n; y++) {
+			int value = getSum(x1, y, x2, y);
+			colDp[y] = Math.max(value, colDp[y - 1] + value);
 		}
-		return ans;
+		int maxArea = Integer.MIN_VALUE;
+		for (int y = 1; y <= n; y++) {
+			maxArea = Math.max(maxArea, colDp[y]);
+		}
+		return maxArea;
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -24,6 +32,7 @@ public class Main {
 		n = Integer.parseInt(br.readLine());
 		graph = new int[n + 1][n + 1];
 		dp = new int[n + 1][n + 1];
+		colDp = new int[n + 1];
 		for (int i = 1; i <= n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j = 1; j <= n; j++) {
@@ -41,7 +50,7 @@ public class Main {
 
 		for (int i = 1; i <= n; i++) {
 			for (int j = i; j <= n; j++) {
-				ans = Math.max(ans, getSum(i, j));
+				ans = Math.max(ans, getAreaSum(i, j));
 			}
 		}
 //		for (int i = 1; i <= n; i++) {
