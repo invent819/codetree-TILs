@@ -38,8 +38,8 @@ public class Main {
 		}
 
 		int ans = Integer.MAX_VALUE;
-		for (int i = k + 1; i <= n; i++) {
-			int sum = k - getSum(i - k, i);
+		for (int i = 1; i <= n - k + 1; i++) {
+			int sum = k - getSum(i, i + k - 1);
 //			System.out.println("sum " + sum);
 			ans = Math.min(ans, sum);
 		}
