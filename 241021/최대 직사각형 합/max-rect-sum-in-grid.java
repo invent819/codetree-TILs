@@ -9,13 +9,11 @@ public class Main {
 	static int[][] graph;
 	static int[][] dp;
 
-	public static int getSum(int x, int y) {
+	public static int getSum(int x1, int x2) {
 		int ans = Integer.MIN_VALUE;
 
-		for (int i = x; i <= n; i++) {
-			for (int j = y; j <= n; j++) {
-				ans = Math.max(ans, dp[i][j] - dp[x - 1][j]);
-			}
+		for (int i = 1; i <= n; i++) {
+			ans = Math.max(ans, dp[x2][i] - dp[x1 - 1][i]);
 		}
 		return ans;
 	}
@@ -40,16 +38,16 @@ public class Main {
 		}
 
 		int ans = Integer.MIN_VALUE;
+
 		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
+			for (int j = i; j <= n; j++) {
 				ans = Math.max(ans, getSum(i, j));
 			}
-
 		}
 //		for (int i = 1; i <= n; i++) {
 //			System.out.println(Arrays.toString(dp[i]));
 //		}
-		
+
 		System.out.println(ans);
 	}
 
