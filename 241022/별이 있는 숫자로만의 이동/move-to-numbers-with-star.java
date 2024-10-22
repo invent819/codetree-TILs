@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -8,53 +9,42 @@ import java.util.StringTokenizer;
 public class Main {
 	static int n, m, k;
 	static int[][] graph;
-	static int[] dx = { -1, 1, 0, 0 };
-	static int[] dy = { 0, 0, -1, 1 };
-	static Node[][] dp;
+	static int[][] dp;
 
-	static boolean[][] visited;
-	static Queue<Node> queue = new LinkedList<>();
 
-	static int bfs(Node node) {
-		visited = new boolean[n + 1][n + 1];
-		queue = new LinkedList<>();
-		queue.add(node);
-		visited[node.x][node.y] = true;
-		int cnt = graph[node.x][node.y];
+	static int getSum(Node node) {
 
-		while (!queue.isEmpty()) {
-			Node pNode = queue.poll();
-			for (int i = 0; i < 4; i++) {
-				int nx = dx[i] + pNode.x;
-				int ny = dy[i] + pNode.y;
-				if (0 < nx && nx <= n && 0 < ny && ny <= n) {
-					if (!visited[nx][ny] && isInner(node, new Node(nx, ny))) {
-						cnt += graph[nx][ny];
-						queue.add(new Node(nx, ny));
-						visited[nx][ny] = true;
-					}
-				}
+		int sum = 0;
+		sum += rowPreSum(node, k);
+		for (int i = 1; i <= k; i++) {
+			if (node.x - i > 0) {
+				sum += rowPreSum(new Node(node.x - i, node.y), k - i );
+			}
+			if (node.x + i <= n) {
+				sum += rowPreSum(new Node(node.x + i, node.y), k - i );
 			}
 		}
 
-		return cnt;
-
+		return sum;
 	}
 
-//	static Node getSum(int x1, int y1, int x2, int y2) {
-//		int a, b, c;
-//
-//		Node n1 = dp[x2][y2];
-//		Node n2 = dp[x1 - 1][y2];
-//		Node n3 = dp[x2][y1 - 1];
-//		Node n4 = dp[x1 - 1][y1 - 1];
-//
-//		a = n1.a - n2.a - n3.a + n4.a;
-//		b = n1.b - n2.b - n3.b + n4.b;
-//		c = n1.c - n2.c - n3.c + n4.c;
-//
-//		return new Node(a, b, c);
-//	}
+	static int rowPreSum(Node node, int length) {
+		int y1 = node.y;
+		int y2 = node.y;
+
+		if (y1 - length <= 0) {
+			y1 = 1;
+		} else {
+			y1 -= length;
+		}
+		if (y2 + length > n) {
+			y2 = n;
+		} else {
+			y2 += length;
+		}
+
+		return dp[node.x][y2] - dp[node.x - 1][y2] - dp[node.x][y1 - 1] + dp[node.x - 1][y1 - 1];
+	}
 
 	static int getDist(Node n1, Node n2) {
 		return Math.abs(n1.x - n2.x) + Math.abs(n1.y - n2.y);
@@ -71,6 +61,7 @@ public class Main {
 		k = Integer.parseInt(st.nextToken());
 		int ans = Integer.MIN_VALUE;
 		graph = new int[n + 1][n + 1];
+		dp = new int[n + 1][n + 1];
 		for (int i = 1; i <= n; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 1; j <= n; j++) {
@@ -80,7 +71,18 @@ public class Main {
 
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= n; j++) {
-				ans = Math.max(ans, bfs(new Node(i, j)));
+				dp[i][j] = dp[i - 1][j] + dp[i][j - 1] + graph[i][j] - dp[i - 1][j - 1];
+			}
+		}
+
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				int sum = getSum(new Node(i, j));
+
+//				if (i == 3 && j == 3) {
+//					System.out.println("sum = " + sum);
+//				}
+				ans = Math.max(ans, sum);
 			}
 		}
 		System.out.println(ans);
