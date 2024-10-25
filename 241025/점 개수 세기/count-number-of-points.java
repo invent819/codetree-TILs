@@ -34,7 +34,7 @@ public class Main {
 		n = Integer.parseInt(st.nextToken());
 		q = Integer.parseInt(st.nextToken());
 
-		point = new int[n];
+//		point = new int[n];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
 //			point[i] = Integer.parseInt(st.nextToken());
@@ -44,7 +44,8 @@ public class Main {
 		for (Integer num : treeSet) {
 			mapper.put(num, cnt++);
 		}
-
+		
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < q; i++) {
 			st = new StringTokenizer(br.readLine());
 			int s = Integer.parseInt(st.nextToken());
@@ -56,7 +57,7 @@ public class Main {
 			} else {
 				Integer findS = treeSet.ceiling(s);
 				if (findS == null) {
-					System.out.println(0);
+					sb.append("0\n");
 					continue;
 				}
 				sCnt = mapper.get(findS);
@@ -67,13 +68,14 @@ public class Main {
 			} else {
 				Integer findE = treeSet.floor(e);
 				if (findE == null) {
-					System.out.println(0);
+					sb.append("0\n");
 					continue;
 				}
 				eCnt = mapper.get(findE);
 			}
-
-			System.out.println(eCnt - sCnt + 1);
+			sb.append((eCnt - sCnt + 1)+"\n");
+			
 		}
+		System.out.println(sb.toString());
 	}
 }
