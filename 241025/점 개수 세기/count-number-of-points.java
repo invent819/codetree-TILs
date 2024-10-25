@@ -34,8 +34,6 @@ public class Main {
 		n = Integer.parseInt(st.nextToken());
 		q = Integer.parseInt(st.nextToken());
 
-		
-		
 		point = new int[n];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
@@ -56,13 +54,22 @@ public class Main {
 			if (mapper.containsKey(s)) {
 				sCnt = mapper.get(s);
 			} else {
-				int findS = treeSet.ceiling(s);
+				Integer findS = treeSet.ceiling(s);
+				if (findS == null) {
+					System.out.println(0);
+					continue;
+				}
 				sCnt = mapper.get(findS);
+
 			}
 			if (mapper.containsKey(e)) {
 				eCnt = mapper.get(e);
 			} else {
-				int findE = treeSet.floor(e);
+				Integer findE = treeSet.floor(e);
+				if (findE == null) {
+					System.out.println(0);
+					continue;
+				}
 				eCnt = mapper.get(findE);
 			}
 
