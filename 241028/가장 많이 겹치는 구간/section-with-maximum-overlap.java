@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 
 public class Main {
 	static int n;
-	static final int MAX_NUM = 100_000;
+	static final int MAX_NUM = 200_001;
 
 	static int[] arr;
 
