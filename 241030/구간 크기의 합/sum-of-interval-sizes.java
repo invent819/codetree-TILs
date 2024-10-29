@@ -23,6 +23,7 @@ public class Main {
 		int cnt = 0;
 		int last = 0;
 		int ans = 0;
+//		System.out.println(treeSet.size());
 		for (Node node : treeSet) {
 
 			if (node.v == -1) {
@@ -56,7 +57,10 @@ class Node implements Comparable<Node> {
 
 	@Override
 	public int compareTo(Node o) {
-		return Integer.compare(x, o.x);
+		if (x != o.x) {
+			return Integer.compare(x, o.x);
+		}
+		return Integer.compare(o.i, i);
 	}
 
 }
