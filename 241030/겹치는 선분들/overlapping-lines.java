@@ -47,12 +47,12 @@ public class Main {
 		for (Point p : treeSet) {
 			if (p.v == 1) {
 				cnt++;
-				if (cnt == 2) {
+				if (cnt == k) {
 					start = p.x;
 				}
 			} else {
 				cnt--;
-				if (cnt == 2) {
+				if (cnt == k) {
 					ans += (p.x - start);
 				}
 			}
