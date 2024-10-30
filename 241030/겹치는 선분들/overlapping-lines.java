@@ -1,18 +1,15 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 public class Main {
 	static int n, k;
-	static final int MAX_NUM = 100_001;
 
-	static int[] arr;
-
-	static TreeSet<Point> treeSet = new TreeSet<>();
-	static HashSet<Integer> l = new HashSet<>();
+	static ArrayList<Point> arr = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,29 +32,30 @@ public class Main {
 			} else {
 				sp = new Point(last - len, 1, i);
 				ep = new Point(last, -1, i);
+				last -= len;
 			}
 
-			treeSet.add(sp);
-			treeSet.add(ep);
+			arr.add(sp);
+			arr.add(ep);
 		}
+		Collections.sort(arr);
+
+		Point[] points = arr.toArray(new Point[arr.size()]);
+//		System.out.println(Arrays.toString(points));
 
 		int cnt = 0;
-		int start = 0;
 		int ans = 0;
-		for (Point p : treeSet) {
-			if (p.v == 1) {
-				cnt++;
-				if (cnt == k) {
-					start = p.x;
-				}
-			} else {
-				cnt--;
-				if (cnt == k) {
-					ans += (p.x - start);
-				}
+
+		for (int i = 0; i < 2 * n; i++) {
+			Point current = arr.get(i);
+			if (cnt >= k) {
+				int preX = arr.get(i - 1).x;
+				ans += (current.x - preX);
 			}
 
+			cnt += current.v;
 		}
+
 		System.out.println(ans);
 	}
 }
@@ -73,7 +71,16 @@ class Point implements Comparable<Point> {
 
 	@Override
 	public int compareTo(Point o) {
-		return Integer.compare(x, o.x);
+		if (x != o.x) {
+			return Integer.compare(x, o.x);
+		}
+		return Integer.compare(v, o.v);
+
+	}
+
+	@Override
+	public String toString() {
+		return "Point [x=" + x + ", v=" + v + ", idx=" + idx + "]";
 	}
 
 }
