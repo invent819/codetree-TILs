@@ -22,12 +22,17 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
+
+		
 		int maxLN = Integer.MIN_VALUE;
 		int maxRN = Integer.MIN_VALUE;
 		for (int i = 0; i < n; i++) {
-			L[i] = Math.max(maxLN, arr[i]);
-			R[n - i - 1] = Math.max(maxRN, arr[n - 1 - i]);
+		 maxLN=	L[i] = Math.max(maxLN, arr[i]);
+		maxRN=	R[n - i - 1] = Math.max(maxRN, arr[n - 1 - i]);
 		}
+//		System.out.println(Arrays.toString(L));
+//		System.out.println(Arrays.toString(R));
+		
 
 		for (int i = 0; i < q; i++) {
 			st = new StringTokenizer(br.readLine());
