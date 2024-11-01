@@ -28,15 +28,20 @@ public class Main {
 		}
 //		System.out.println(Arrays.toString(arr));
 		Arrays.sort(arr);
+		boolean has = false;
 
 		for (int i = 0; i < n - 1; i++) {
 			Point p1 = arr[i];
 			Point p2 = arr[i+1];
 			if(p1.v == p2.v && valid(p1.x, p2.x)) {
 				System.out.println(p1.v);
+				has  = true;
 				break;
 			}
 		}
+		
+		if(!has)
+			System.out.println(-1);
 
 	}
 
