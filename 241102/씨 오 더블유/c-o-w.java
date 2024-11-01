@@ -31,7 +31,7 @@ public class Main {
 
 //		System.out.println(Arrays.toString(L));
 //		System.out.println(Arrays.toString(R));
-		int ans = 0;
+		long ans = 0;
 		for (int i = 1; i < n - 1; i++) {
 			if (word[i] == 'O') {
 				ans += (L[i - 1] * R[i + 1]);
