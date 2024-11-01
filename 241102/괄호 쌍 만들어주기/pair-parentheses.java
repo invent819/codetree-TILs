@@ -40,7 +40,7 @@ public class Main {
 			}
 		}
 
-		int ans = 0;
+		long ans = 0;
 		cnt = 0;
 		for (int i = 0; i < len - 1; i++) {
 			if (input[i] == '(') {
