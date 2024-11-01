@@ -19,20 +19,9 @@ public class Main {
 		int cnt = 0;
 
 		int len = input.length;
-		for (int i = 0; i < len; i++) {
-			if (input[i] == '(') {
-				cnt++;
-			} else {
-				cnt = 0;
-			}
-			if (i != 0) {
-				L[i] = L[i - 1];
-			}
 
-			if (cnt >= 2) {
-				L[i] += 1;
-			}
-		}
+		L = new int[len];
+		R = new int[len];
 
 		cnt = 0;
 
@@ -50,10 +39,20 @@ public class Main {
 				R[i] += 1;
 			}
 		}
-//		System.out.println(Arrays.toString(L));
-//		System.out.println(Arrays.toString(R));
 
-		int ans = L[len - 1] * R[0];
+		int ans = 0;
+		cnt = 0;
+		for (int i = 0; i < len - 1; i++) {
+			if (input[i] == '(') {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+
+			if (cnt >= 2) {
+				ans += R[i + 1];
+			}
+		}
 
 		System.out.println(ans);
 
