@@ -17,18 +17,22 @@ public class Main {
 
 		n = Integer.parseInt(br.readLine());
 		char[] word = br.readLine().toCharArray();
-
+//		L = new int[n];
+//		R = new int[n];
 		L[0] = word[0] == 'C' ? 1 : 0;
 		for (int i = 1; i < n; i++) {
-			L[i] += L[0] + (word[i] == 'C' ? 1 : 0);
+			L[i] += L[i - 1] + (word[i] == 'C' ? 1 : 0);
 		}
 
 		R[n - 1] = word[n - 1] == 'W' ? 1 : 0;
 		for (int i = n - 2; i >= 0; i--) {
 			R[i] += R[i + 1] + (word[i] == 'W' ? 1 : 0);
 		}
+
+//		System.out.println(Arrays.toString(L));
+//		System.out.println(Arrays.toString(R));
 		int ans = 0;
-		for (int i = 1; i < n - 2; i++) {
+		for (int i = 1; i < n - 1; i++) {
 			if (word[i] == 'O') {
 				ans += (L[i - 1] * R[i + 1]);
 			}
