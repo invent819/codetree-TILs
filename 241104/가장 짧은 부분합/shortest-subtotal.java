@@ -41,24 +41,27 @@ public class Main {
 
 		int ans = Integer.MAX_VALUE;
 
-		int sum = 0;
-
+		int sum = arr[0];
+		int j = 0;
 		for (int i = 0; i < n; i++) {
-			l = i;
-			while (r < n && sum + arr[r] < s) {
-				sum += arr[r++];
+			while (j + 1 < n && sum + arr[j + 1] < s) {
+				sum += arr[j + 1];
+				j++;
 			}
-			if (r < n) {
-				sum += arr[r++];
+
+			if (j + 1 < n && sum <  s) {
+				sum += arr[j + 1];
+				j++;
 			}
 
 			if (sum >= s) {
-//				System.out.println("r: " + r + " l: " + l);
-				ans = Math.min(ans, r - l - 1);
+//				System.out.println("j: " + j + " i: " + i + " sum: " + sum);
+				ans = Math.min(ans, j - i + 1);
 			}
 
-			sum -= arr[l];
+			sum -= arr[i];
 		}
+
 		System.out.println(ans == Integer.MAX_VALUE ? -1 : ans);
 
 	}
