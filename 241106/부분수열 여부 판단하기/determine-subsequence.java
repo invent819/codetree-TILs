@@ -28,18 +28,19 @@ public class Main {
 	static int[] a, b;
 
 	static boolean subNums(int aIdx, int bIdx) {
-		if (aIdx == n + 1) {
+		
+		if (aIdx == n || m-bIdx > n - aIdx) {
 			return false;
 		}
 
 		for (int i = aIdx; i < n; i++) {
 			if (a[i] == b[bIdx]) {
-				if(bIdx == m - 1) {
+				if (bIdx == m - 1) {
 					return true;
 				}
-				
+
 				boolean ret = subNums(i + 1, bIdx + 1);
-				if(ret) {
+				if (ret) {
 					return true;
 				}
 			}
@@ -66,8 +67,8 @@ public class Main {
 		for (int i = 0; i < m; i++) {
 			b[i] = Integer.parseInt(st.nextToken());
 		}
-		
-		System.out.println(subNums(0,0) ? "Yes" : "No");
+
+		System.out.println(subNums(0, 0) ? "Yes" : "No");
 
 //		System.out.println(ans);
 	}
