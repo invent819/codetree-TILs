@@ -45,23 +45,27 @@ public class Main {
 
 		int j = n;
 
-		int sum = 0;
 		int ans = 0;
 //		System.out.println(m);
 //		System.out.println(Arrays.toString(arr));
+		l = 0;
+		r = n - 1;
+		while (l < r) {
+//			System.out.println("l = " + l + " r = " + r);
 
-		for (int i = 0; i < j; i++) {
-			while (j - 1 >= 0 && arr[i] + arr[j - 1] >= m) {
-				j--;
+			int sum = arr[l] + arr[r];
+			if (sum >= m) {
+				r--;
+			} else if (sum < m) {
+
+				
+				l++;
 			}
-//			System.out.println(arr[i] + arr[j]);
-//			System.out.println("i = " + i + " j = " + j);
-			if(arr[i] + arr[j] <= m) {
+			if(sum <= m) {
 				ans ++;
 			}
-			
-		}
 
+		}
 		System.out.println(ans);
 
 	}
