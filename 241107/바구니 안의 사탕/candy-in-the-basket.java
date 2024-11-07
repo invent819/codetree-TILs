@@ -54,10 +54,14 @@ public class Main {
 		ans = sum;
 //		System.out.println(ans);
 
-		for (int i = r; i < n + 1; i++) {
+		for (int i = r; i < MAX_N; i++) {
 			int nl = l++;
 			int nr = r++;
-			sum = sum - arr[nl] - arr[nr] + arr[l] + arr[r];
+//			System.out.println("nl = "+nl + " nr = "+ nr + " sum = " + sum);
+			sum = sum - arr[nl] + arr[r];
+			if(ans < sum ) {
+				
+			}
 			ans = Math.max(ans, sum);
 		}
 
