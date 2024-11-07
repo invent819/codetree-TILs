@@ -34,17 +34,19 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		n = Integer.parseInt(st.nextToken());
 		k = Integer.parseInt(st.nextToken());
-		arr = new int[MAX_N + 1];
+		arr = new int[MAX_N + 2];
 
+		
 		for (int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
 			int cnt = Integer.parseInt(st.nextToken());
 			int x = Integer.parseInt(st.nextToken());
 			arr[x] = cnt;
+			
 		}
 
-		int l = 1;
-		int r = k * 2 + 1;
+		int l = 0;
+		int r = k * 2 + 1 >= MAX_N ? MAX_N : k * 2  ;
 		int sum = 0;
 		int ans = 0;
 
@@ -54,18 +56,20 @@ public class Main {
 		ans = sum;
 //		System.out.println(ans);
 
-		for (int i = r; i < MAX_N; i++) {
+		for (int i = r; i < MAX_N + 1; i++) {
 			int nl = l++;
 			int nr = r++;
-//			System.out.println("nl = "+nl + " nr = "+ nr + " sum = " + sum);
+//			
 			sum = sum - arr[nl] + arr[r];
 			if(ans < sum ) {
-				
+//				System.out.println("nl = "+nl + " nr = "+ nr + " sum = " + sum);
 			}
 			ans = Math.max(ans, sum);
 		}
 
+		
 		System.out.println(ans);
+		
 
 	}
 }
