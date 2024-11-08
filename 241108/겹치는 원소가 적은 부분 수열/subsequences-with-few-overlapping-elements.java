@@ -48,6 +48,8 @@ public class Main {
 
 			}
 			ans = Math.max(ans, j - i + 1);
+			int iCnt = map.getOrDefault(arr[i], 0);
+			map.put(arr[i], iCnt - 1);
 		}
 
 		System.out.println(ans);
