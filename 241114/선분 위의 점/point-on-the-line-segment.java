@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -62,10 +63,10 @@ public class Main {
 
 	static int getCount(int x1, int x2) {
 		int ret = 0;
-		
+
 		int l = getLowerBound(x1);
 		int r = getUpperBound(x2);
-		
+
 		return r - l;
 	}
 
@@ -74,10 +75,14 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
+		arr = new int[n];
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < n; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
+
+		Arrays.sort(arr);
+
 
 		for (int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -85,6 +90,7 @@ public class Main {
 			int x2 = Integer.parseInt(st.nextToken());
 			System.out.println(getCount(x1, x2));
 		}
+
 
 	}
 }
